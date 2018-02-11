@@ -470,6 +470,8 @@ class ConsoleWidget(MetaQObjectHasTraits('NewBase', (LoggingConfigurable, superQ
         """ Reimplemented to suggest a size that is 80 characters wide and
             25 lines high.
         """
+        if not hasattr(self, "font"):
+            return super(ConsoleWidget, self).sizeHint()
         font_metrics = QtGui.QFontMetrics(self.font)
         margin = (self._control.frameWidth() +
                   self._control.document().documentMargin()) * 2
